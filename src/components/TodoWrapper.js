@@ -5,12 +5,12 @@ import { Todo } from './Todo';
 import { EditTodoFrom } from './EditTodoFrom';
 uuidv4();
 
-const getLocalItems = () =>{
+const getLocalItems = () => {
   let list = localStorage.getItem('todos')
   console.log(list);
   if (list) {
     return JSON.parse(localStorage.getItem('todos'))
-  }else{
+  } else {
     return [];
   }
 }
@@ -49,9 +49,9 @@ export const TodoWrapper = () => {
     setTodos(todos.map(todo => todo.id === id ? { ...todo, isEditing: !todo.isEditing } : todo))
   }
 
-  const editTask = (task, id) =>{
-    setTodos(todos.map(todo => todo.id === id ? 
-      {...todo, task, isEditing: !todo.isEditing} : todo))
+  const editTask = (task, id) => {
+    setTodos(todos.map(todo => todo.id === id ?
+      { ...todo, task, isEditing: !todo.isEditing } : todo))
   }
 
   return (
@@ -60,7 +60,7 @@ export const TodoWrapper = () => {
       <TodoFrom addTodo={addTodo} />
       {todos.map((todo, index) => (
         todo.isEditing ? (
-          <EditTodoFrom editTodo={editTask} task={todo}/>
+          <EditTodoFrom editTodo={editTask} task={todo} />
         ) : (
           <Todo task={todo} key={index}
             toggleComplete={toggleComplete}
